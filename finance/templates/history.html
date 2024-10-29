@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}Transaction History{% endblock %}
+
+{% block content %}
+    <h2>Transaction History</h2>
+
+    <!-- If the user has no transactions -->
+    {% if not history %}
+        <p>No transaction history available.</p>
+    {% else %}
+        <!-- Table to display transaction history -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Type</th>
+                    <th>Date/Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in history %}
+                <tr>
+                    <td>{{ transaction.symbol }}</td>
+                    <td>{{ transaction.shares }}</td>
+                    <td>{{ transaction.price }}</td>
+                    <td>{{ transaction.total }}</td>
+                    <td>{{ transaction.type }}</td>
+                    <td>{{ transaction.time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
